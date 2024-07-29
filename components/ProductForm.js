@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Spinner from "./Spinner";
+import { ReactSortable } from "react-sortablejs"; // Correct import
 
 // Component for the add/edit product
 export default function ProductForm({ _id, title: existingTitle, description: existingDescription, price: existingPrice, images: existingImages }) {
@@ -42,10 +43,14 @@ export default function ProductForm({ _id, title: existingTitle, description: ex
       const res = await axios.post('/api/upload', data);
       setImages(oldImages => {
         return [...oldImages, ...res.data.links];
-      })
+      });
       setIsUploading(false);
       //console.log(res.data);
     }
+  }
+
+  function updateImagesOrder(images) {
+    setImages(images);
   }
 
   return (
@@ -59,15 +64,17 @@ export default function ProductForm({ _id, title: existingTitle, description: ex
       />
       <label>Photos</label>
       <div className="mb-2 flex flex-wrap gap-2">
-        {!!images?.length && images.map(link => (
+        <ReactSortable list={images} setList={updateImagesOrder} className="flex flex-wrap gap-1">
+          {!!images?.length && images.map(link => (
             <div key={link} className="h-24">
-                <img src={link} alt="" className="rounded-lg"/>
+              <img src={link} alt="" className="rounded-lg"/>
             </div>
-        ))}
+          ))}
+        </ReactSortable>
         {isUploading && (
-            <div className="h-24 p-1 flex items-center">
-                <Spinner />
-            </div>
+          <div className="h-24 p-1 flex items-center">
+            <Spinner />
+          </div>
         )}
         <label className="w-24 h-24 flex gap-1 items-center justify-center text-sm text-gray-500 rounded-lg bg-gray-200 cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
