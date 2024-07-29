@@ -54,5 +54,21 @@ table.basic a{
     border-radius: 0.375rem;
     padding: 0.25rem 0.75rem 0.25rem 0.75rem;
     margin-top: 6px;
+    margin-right: 0.5rem;
     display: inline-flex;
+}
+
+.btn-red, .btn-default{
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    border-radius: 0.375rem;
+}
+
+.btn-red{
+    background-color: #991b1b; 
+    color: #fff;
+}
+
+.btn-default{
+    background-color: #6b7280;
+    color: #fff;
 }
