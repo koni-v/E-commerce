@@ -72,3 +72,7 @@ table.basic a{
     background-color: #6b7280;
     color: #fff;
 }
+
+img{
+    max-height: 100%;
+}
