@@ -1,6 +1,7 @@
 import { Product } from "../../models/Product";
 import { mongooseConect } from "../../lib/mongoose";
 
+// Products api
 export default async function handler(req, res) {
     const { method } = req;
     await mongooseConect();
@@ -20,4 +21,10 @@ export default async function handler(req, res) {
         })
         res.json(productDoc);
     } 
+
+    if(method === 'PUT'){
+        const {title, description, price, _id} = req.body;
+        await Product.updateOne({_id}, {title, description, price});
+        res.json(true);
+    }
 }

@@ -1,6 +1,7 @@
 import Layout from "../../components/Layout";
 import ProductForm from "../../components/ProductForm";
 
+// Add product page
 export default function NewProduct(){
     return (
         <Layout>

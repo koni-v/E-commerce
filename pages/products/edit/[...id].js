@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductForm from "../../../components/ProductForm";
 
+// Edit page
 export default function EditProductPage(){
     const [productInfo, setProductInfo] = useState(null);
     const router = useRouter();
