@@ -1,10 +1,10 @@
 import { Product } from "../../models/Product";
-import { mongooseConect } from "../../lib/mongoose";
+import { mongooseConnect } from "../../lib/mongoose";
 
 // Products api
 export default async function handler(req, res) {
     const { method } = req;
-    await mongooseConect();
+    await mongooseConnect();
 
     if (method === 'GET'){
         if (req.query?.id){
